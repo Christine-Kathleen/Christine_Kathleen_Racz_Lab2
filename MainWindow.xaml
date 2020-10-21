@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Christine_Kathleen_Racz_Lab2"
         mc:Ignorable="d"
-        Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
+        Title="Virtual Doughnuts Factory" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Loaded="frmMain_Loaded" >
       
         <Grid RenderTransformOrigin="0.937,0.25">
                 <Label x:Name="lblTitle" Content=" Doughnuts - Bake &amp; Sale" FontSize="24" FontWeight="Bold" Margin="235,10,146,354"/>
@@ -23,7 +23,7 @@
                 <TextBox x:Name="txtVanillaFilled" HorizontalAlignment="Left" Margin="569,187,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
                 <GroupBox x:Name="gbSale" Header="Current Sale" FontWeight="Bold" Margin="68,238,32,12"/>
                 <Label x:Name="lblQuantity" Content="Quantity" HorizontalAlignment="Left" Margin="100,266,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Margin="187,269,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" Height="24"/>
+                <TextBox x:Name="txtQuantity" HorizontalAlignment="Left" Margin="187,269,0,0" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" Height="24" KeyUp="txtQuantity_KeyPress"/>
                 <Label x:Name="lblType" Content="Type" HorizontalAlignment="Left" Margin="253,265,0,0" VerticalAlignment="Top"/>
                 <ComboBox x:Name="cmbType" HorizontalAlignment="Left" Margin="298,269,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
                 <Label x:Name="lblPrice" Content="Price" HorizontalAlignment="Left" Margin="455,265,0,0" VerticalAlignment="Top"/>
@@ -36,16 +36,17 @@
                 <Button x:Name="btnCheckOut" Content="Check Out" HorizontalAlignment="Left" Margin="665,360,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="25" Width="73"/>
                 <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="21" VerticalAlignment="Top" Width="131" Margin="0,26,0,0">
                     <MenuItem Header="File">
-                        <MenuItem Header="Exit"/>
+                        <MenuItem Header="Exit" Click="exitToolStripMenuItem_Click"/>
                     </MenuItem>
                     <MenuItem Header="_Doughnuts">
                         <MenuItem Header="Make">
                             <MenuItem Header="Raised">
-                                <MenuItem x:Name="glazedMenuItem" Header="Glazed"/>
-                                <MenuItem x:Name="sugarMenuItem" Header="Sugar"/>
+                        <MenuItem x:Name="glazedToolStripMenuItem" Header="Glazed" Click="glazedToolStripMenuItem_Click" IsCheckable="True"/>
+                        <MenuItem x:Name="sugarToolStripMenuItem" Header="Sugar" IsCheckable="True" Click="sugarToolStripMenuItem_Click" />
                             </MenuItem>
                             <MenuItem Header="Filled"/>
                         </MenuItem>
+                        <MenuItem x:Name="mnuStop" Header="Stop" Click="stopToolStripMenuItem_Click"/>
                     </MenuItem>
                 </Menu>
 
