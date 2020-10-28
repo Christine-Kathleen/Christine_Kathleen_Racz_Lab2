@@ -8,7 +8,7 @@ namespace Christine_Kathleen_Racz_Lab2
 {
     class DoughnutMachine : Component
     {
-        private System.Collections.ArrayList mDoughnuts = new System.Collections.ArrayList();
+        private System.Collections.ArrayList mDoughnuts = new System.Collections.ArrayList(); // memoreaza instanțe din clasa Doughnut.
         public Doughnut this[int Index]
         {
             get
@@ -23,7 +23,8 @@ namespace Christine_Kathleen_Racz_Lab2
             }
         }
         private DoughnutType mFlavor;
-        public DoughnutType Flavor
+        public DoughnutType Flavor // adăugăm o proprietate care să indice tipul de gogoașă generat de
+                                    //instanta curentă din clasă.Proprietatea trebuie să fie de tipul enumerare DoughnutType
         {
             get
             {
@@ -34,17 +35,18 @@ namespace Christine_Kathleen_Racz_Lab2
                 mFlavor = value;
             }
         }
-        public delegate void DoughnutCompleteDelegate();
+        public delegate void DoughnutCompleteDelegate();//eveniment care se va genera atunci cand crearea unei gogoși este finalizată. Pentru acest
+                                                        //eveniment trebuie să creem si un Delegate public in clasa DoughnutMachine
         public event DoughnutCompleteDelegate DoughnutComplete;
 
-        DispatcherTimer doughnutTimer;
+        DispatcherTimer doughnutTimer;//monitoriza timpul de coacere pentru fiecare gogoașă
 
-        private void InitializeComponent()
+        private void InitializeComponent() //pt a initializa obiectul doughnutTimer
         {
             this.doughnutTimer = new DispatcherTimer();
             this.doughnutTimer.Tick += new System.EventHandler(this.doughnutTimer_Tick);
         }
-        public DoughnutMachine()
+        public DoughnutMachine() //ne asigurăm că această metodă este apelată la creerea unei instanțe din component DoughnutMachine
         {
             InitializeComponent();
         }
@@ -84,7 +86,7 @@ namespace Christine_Kathleen_Racz_Lab2
             doughnutTimer.Start();
         }
     }
-    public enum DoughnutType
+    public enum DoughnutType //e adăugăm un tip enumerare 
     {
         Glazed,
         Sugar,
@@ -92,7 +94,9 @@ namespace Christine_Kathleen_Racz_Lab2
         Chocolate,
         Vanilla
     }
-    class Doughnut
+    class Doughnut // clasă numită Doughnut care reprezintă o
+                    //gogoașă.Această clasă trebuie să aibă o proprietate numită flavor, una price si o proprietate time(de tip
+                    //read-only)
     {
         private DoughnutType mFlavor;
 
@@ -128,6 +132,8 @@ namespace Christine_Kathleen_Racz_Lab2
             }
 
         }
+        // proprietătile de tip readonly pot să fie initializate doar in constructor, pentru această clasă va trebui să scriem un
+        //constructor care să seteze proprietățile obiectului de tip Doughnut creat
         public Doughnut(DoughnutType aFlavor) // constructor
         {
             mTimeOfCreation = DateTime.Now;
